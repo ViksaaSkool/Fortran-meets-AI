@@ -19,6 +19,7 @@ h1 {
   font-size: 2rem;
 }
 
+/* Model Tabs */
 .tabs {
   display: flex;
   justify-content: center;
@@ -48,6 +49,38 @@ h1 {
   border-bottom: 2px solid #569cd6;
 }
 
+/* Language Tabs */
+.lang-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #3d3d3d;
+  padding-bottom: 10px;
+}
+
+.lang-btn {
+  padding: 8px 20px;
+  background: transparent;
+  border: 1px solid #3d3d3d;
+  color: #808080;
+  cursor: pointer;
+  font-size: 0.85rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.lang-btn:hover {
+  background: #3d3d3d;
+  color: #d4d4d4;
+}
+
+.lang-btn.active {
+  background: #569cd6;
+  border-color: #569cd6;
+  color: #fff;
+}
+
+/* Tab Content */
 .tab-content {
   display: none;
   background: #252526;
@@ -61,6 +94,15 @@ h1 {
   display: block;
 }
 
+.lang-content {
+  display: none;
+}
+
+.lang-content.active {
+  display: block;
+}
+
+/* Problem Styling */
 .problem {
   margin-bottom: 30px;
   padding: 20px;
@@ -94,6 +136,7 @@ code {
   font-family: inherit;
 }
 
+/* Syntax Highlighting */
 .keyword {
   color: #569cd6;
 }
@@ -114,17 +157,9 @@ code {
   color: #6a9955;
 }
 
-.claude .keyword {
-  color: #569cd6;
-}
-
-.codex .keyword {
-  color: #c586c0;
-}
-
-.minimax .keyword {
-  color: #4ec9b0;
-}
+.fortran .keyword { color: #c586c0; }
+.python .keyword { color: #569cd6; }
+.kotlin .keyword { color: #4ec9b0; }
 
 @media (max-width: 768px) {
   body {
@@ -142,6 +177,15 @@ code {
   .tab-btn {
     padding: 10px 20px;
     font-size: 0.9rem;
+  }
+
+  .lang-tabs {
+    flex-wrap: wrap;
+  }
+
+  .lang-btn {
+    padding: 6px 14px;
+    font-size: 0.75rem;
   }
 
   pre {
