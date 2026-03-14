@@ -1,0 +1,17 @@
+PROBLEM_1_TITLE=Problem 1: Product Computation
+PROBLEM_1_DESC=Compute P = ∏(n·k / (k·2ᵏ)) for k=1 to n where n > 10
+PROBLEM_1_CODE=import math
+
+def compute_product(n):
+    if n <= 10:
+        return None
+    
+    # Direct formula: P = n^n / 2^(n(n+1)/2)
+    P = n**n / (2 ** (n * (n + 1) // 2))
+    return P
+
+# Example usage
+n = 11
+result = compute_product(n)
+print(f"P = {result}")
+print(f"P (scientific) = {result:.6e}")

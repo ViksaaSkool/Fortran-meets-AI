@@ -1,0 +1,21 @@
+PROBLEM_1_TITLE=Problem 1: Product Computation
+PROBLEM_1_DESC=Compute P = ∏(n·k / (k·2ᵏ)) for k=1 to n where n > 10
+PROBLEM_1_CODE=PROGRAM PRODUCT
+  IMPLICIT NONE
+  INTEGER :: n, k
+  REAL :: P
+
+  ! Read input n (n > 10)
+  READ(*, *) n
+
+  ! Compute product
+  P = 1.0
+  DO k = 1, n
+    P = P * (REAL(n) * REAL(k)) / &
+        (REAL(k) * (2.0 ** k))
+  END DO
+
+  ! Output result
+  PRINT *, 'P = ', P
+
+END PROGRAM PRODUCT

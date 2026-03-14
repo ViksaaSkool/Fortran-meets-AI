@@ -1,0 +1,162 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #569cd6;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  background: #2d2d2d;
+  border: none;
+  color: #808080;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 8px 8px 0 0;
+  transition: all 0.2s;
+}
+
+.tab-btn:hover {
+  background: #3d3d3d;
+  color: #d4d4d4;
+}
+
+.tab-btn.active {
+  background: #252526;
+  color: #569cd6;
+  border-bottom: 2px solid #569cd6;
+}
+
+.tab-content {
+  display: none;
+  background: #252526;
+  border-radius: 0 8px 8px 8px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.problem {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: #1e1e1e;
+  border-radius: 8px;
+}
+
+.problem h2 {
+  color: #4ec9b0;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+}
+
+.problem p {
+  color: #9cdcfe;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+pre {
+  background: #0d0d0d;
+  padding: 15px;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+code {
+  font-family: inherit;
+}
+
+.keyword {
+  color: #569cd6;
+}
+
+.function {
+  color: #dcdcaa;
+}
+
+.number {
+  color: #b5cea8;
+}
+
+.string {
+  color: #ce9178;
+}
+
+.comment {
+  color: #6a9955;
+}
+
+.operator {
+  color: #d4d4d4;
+}
+
+.fortran .keyword {
+  color: #c586c0;
+}
+
+.python .keyword {
+  color: #569cd6;
+}
+
+.python .function {
+  color: #dcdcaa;
+}
+
+.kotlin .keyword {
+  color: #c586c0;
+}
+
+.kotlin .function {
+  color: #dcdcaa;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  pre {
+    font-size: 0.8rem;
+  }
+}

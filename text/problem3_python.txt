@@ -1,0 +1,19 @@
+PROBLEM_3_TITLE=Problem 3: Sum of Squares & Vector Norm
+PROBLEM_3_DESC=Compute S = Σaₖ² and ||x|| = √(Σxₖ²) for m ≤ 100
+PROBLEM_3_CODE=import math
+
+def compute_sum_of_squares(sequence, m):
+    return sum(a**2 for a in sequence[:m])
+
+def compute_vector_norm(sequence, m):
+    return math.sqrt(compute_sum_of_squares(sequence, m))
+
+# Example usage
+m = 5
+x = [3, 4, 12, 0, 3]
+
+S = compute_sum_of_squares(x, m)
+norm = compute_vector_norm(x, m)
+
+print(f"Sum of squares S = {S}")
+print(f"Vector norm ||x|| = {norm}")

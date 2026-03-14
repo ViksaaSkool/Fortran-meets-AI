@@ -1,0 +1,22 @@
+PROBLEM_3_TITLE=Problem 3: Sum of Squares & Vector Norm
+PROBLEM_3_DESC=Compute S = Σaₖ² and ||x|| = √(Σxₖ²) for m ≤ 100
+PROBLEM_3_CODE=import kotlin.math.sqrt
+
+fun computeSumOfSquares(sequence: List<Double>, m: Int): Double {
+    return sequence.take(m).map { it * it }.sum()
+}
+
+fun computeVectorNorm(sequence: List<Double>, m: Int): Double {
+    return sqrt(computeSumOfSquares(sequence, m))
+}
+
+fun main() {
+    val m = 5
+    val x = listOf(3.0, 4.0, 12.0, 0.0, 3.0)
+
+    val S = computeSumOfSquares(x, m)
+    val norm = computeVectorNorm(x, m)
+
+    println("Sum of squares S = $S")
+    println("Vector norm ||x|| = $norm")
+}

@@ -1,0 +1,29 @@
+PROBLEM_2_TITLE=Problem 2: Function Tabulation
+PROBLEM_2_DESC=Tabulate y = (2 + sin(x)) / x for x ∈ [-5π/6, 4π/5] with step π/4
+PROBLEM_2_CODE=import kotlin.math.sin
+import kotlin.math.abs
+
+fun computeY(x: Double): String {
+    return if (abs(x) < 1e-10) {
+        "undefined"
+    } else {
+        (2.0 + sin(x)) / x
+    }
+}
+
+fun main() {
+    val pi = 3.14159
+    val start = -5.0 * pi / 6.0
+    val step = pi / 4.0
+    val end = 4.0 * pi / 5.0
+
+    println("${"x".padStart(12)} ${"y".padStart(20)}")
+    println("-".repeat(35))
+
+    var x = start
+    while (x <= end + 1e-9) {
+        val y = computeY(x)
+        println("${String.format("%.5f", x).padStart(12)} ${y.toString().padStart(20)}")
+        x += step
+    }
+}

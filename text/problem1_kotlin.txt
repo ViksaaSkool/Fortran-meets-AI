@@ -1,0 +1,18 @@
+PROBLEM_1_TITLE=Problem 1: Product Computation
+PROBLEM_1_DESC=Compute P = ∏(n·k / (k·2ᵏ)) for k=1 to n where n > 10
+PROBLEM_1_CODE=import kotlin.math.pow
+
+fun computeProduct(n: Int): Double? {
+    if (n <= 10) return null
+    
+    // Direct formula: P = n^n / 2^(n(n+1)/2)
+    val numerator = n.toDouble().pow(n.toDouble())
+    val denominator = 2.0.pow((n * (n + 1) / 2).toDouble())
+    return numerator / denominator
+}
+
+fun main() {
+    val n = 11
+    val result = computeProduct(n)
+    println("P = $result")
+}

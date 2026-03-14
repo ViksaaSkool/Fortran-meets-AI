@@ -1,0 +1,24 @@
+PROBLEM_2_TITLE=Problem 2: Function Tabulation
+PROBLEM_2_DESC=Tabulate y = (2 + sin(x)) / x for x ∈ [-5π/6, 4π/5] with step π/4
+PROBLEM_2_CODE=PROGRAM TABULATE
+  IMPLICIT NONE
+  REAL :: x, y, pi, start, step, end
+  PARAMETER (pi = 3.14159)
+
+  start = -5.0 * pi / 6.0
+  step = pi / 4.0
+  end = 4.0 * pi / 5.0
+
+  PRINT *, 'x', 'y'
+  x = start
+  DO WHILE (x <= end)
+    IF (ABS(x) < 1.0e-6) THEN
+      PRINT *, x, 'Undefined'
+    ELSE
+      y = (2.0 + SIN(x)) / x
+      PRINT *, x, y
+    END IF
+    x = x + step
+  END DO
+
+END PROGRAM TABULATE

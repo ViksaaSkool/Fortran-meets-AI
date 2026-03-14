@@ -1,0 +1,22 @@
+PROBLEM_2_TITLE=Problem 2: Function Tabulation
+PROBLEM_2_DESC=Tabulate y = (2 + sin(x)) / x for x ∈ [-5π/6, 4π/5] with step π/4
+PROBLEM_2_CODE=import math
+
+def compute_y(x):
+    if abs(x) < 1e-10:
+        return "undefined"
+    return (2 + math.sin(x)) / x
+
+pi = 3.14159
+start = -5 * pi / 6
+step = pi / 4
+end = 4 * pi / 5
+
+print(f"{'x':>12} {'y':>20}")
+print("-" * 35)
+
+x = start
+while x <= end + 1e-9:
+    y = compute_y(x)
+    print(f"{x:>12.5f} {y:>20}")
+    x += step

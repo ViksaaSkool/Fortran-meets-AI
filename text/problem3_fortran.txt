@@ -1,0 +1,24 @@
+PROBLEM_3_TITLE=Problem 3: Sum of Squares & Vector Norm
+PROBLEM_3_DESC=Compute S = Σaₖ² and ||x|| = √(Σxₖ²) for m ≤ 100
+PROBLEM_3_CODE=PROGRAM VECTOR_NORM
+  IMPLICIT NONE
+  INTEGER :: m, k
+  REAL :: x(100), S, norm
+
+  ! Read m and vector elements
+  READ *, m
+  READ *, (x(k), k = 1, m)
+
+  ! Compute sum of squares
+  S = 0.0
+  DO k = 1, m
+    S = S + x(k)**2
+  END DO
+
+  ! Compute vector norm
+  norm = SQRT(S)
+
+  PRINT *, 'Sum = ', S
+  PRINT *, 'Norm = ', norm
+
+END PROGRAM VECTOR_NORM
