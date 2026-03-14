@@ -4,18 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Solutions - Fortran meets AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     
     body { 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      font-family: 'VT323', 'Courier New', monospace; 
+      background: #0a0a0a;
+      color: #4ade80;
       min-height: 100vh;
       padding: 20px;
-      transition: background 0.3s, color 0.3s;
+      font-size: 18px;
     }
-    
-    body.dark { background: #1e1e1e; color: #d4d4d4; }
-    body.light { background: #f5f5f5; color: #333; }
     
     .header {
       display: flex;
@@ -30,63 +32,62 @@
       align-items: center;
       gap: 8px;
       padding: 10px 20px;
-      color: #569cd6;
+      color: #4ade80;
       text-decoration: none;
-      font-size: 0.95rem;
+      font-size: 1.1rem;
       transition: opacity 0.2s;
+      border: 1px solid #4ade80;
     }
-    .back-btn:hover { opacity: 0.8; }
+    .back-btn:hover { opacity: 0.7; }
     .back-btn svg { width: 18px; height: 18px; }
     
     .theme-toggle { 
-      width: 44px; height: 44px; cursor: pointer; border-radius: 50%; border: none;
-      background: #3d3d3d; color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; cursor: pointer; border-radius: 50%; border: 1px solid #4ade80;
+      background: transparent; color: #4ade80; font-size: 20px; display: flex; align-items: center; justify-content: center;
       transition: transform 0.3s, background 0.3s;
     }
-    .theme-toggle:hover { transform: scale(1.1); }
-    body.light .theme-toggle { background: #ddd; color: #333; }
+    .theme-toggle:hover { transform: scale(1.1); background: rgba(74, 222, 128, 0.1); }
     
     .theme-toggle .icon { display: block; }
     .theme-toggle .icon-moon { display: none; }
     body.light .theme-toggle .icon-sun { display: none; }
     body.light .theme-toggle .icon-moon { display: block; }
     
-    h1 { text-align: center; color: #569cd6; margin-bottom: 30px; font-size: 2rem; }
-    body.light h1 { color: #0066cc; }
+    h1 { text-align: center; color: #4ade80; margin-bottom: 30px; font-size: 2rem; text-transform: uppercase; }
+    body.light h1 { color: #16a34a; }
     
     .tabs { display: flex; justify-content: center; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
-    .tab-btn { padding: 12px 30px; background: #2d2d2d; border: none; color: #808080; cursor: pointer; font-size: 1rem; border-radius: 8px 8px 0 0; }
-    body.light .tab-btn { background: #ddd; color: #666; }
-    .tab-btn:hover { background: #3d3d3d; color: #d4d4d4; }
-    body.light .tab-btn:hover { background: #ccc; color: #333; }
-    .tab-btn.active { background: #252526; color: #569cd6; border-bottom: 2px solid #569cd6; }
-    body.light .tab-btn.active { background: #fff; color: #0066cc; border-bottom-color: #0066cc; }
+    .tab-btn { padding: 12px 30px; background: transparent; border: 1px solid #4ade80; color: #4ade80; cursor: pointer; font-size: 1.1rem; font-family: inherit; }
+    body.light .tab-btn { border-color: #16a34a; color: #16a34a; }
+    .tab-btn:hover { background: rgba(74, 222, 128, 0.1); }
+    .tab-btn.active { background: #4ade80; color: #0a0a0a; }
+    body.light .tab-btn.active { background: #16a34a; color: #fff; }
     
-    .tab-content { display: none; background: #252526; border-radius: 0 8px 8px 8px; padding: 20px; max-width: 900px; margin: 0 auto; }
-    body.light .tab-content { background: #fff; }
+    .tab-content { display: none; background: #111; border: 1px solid #4ade80; border-radius: 8px; padding: 20px; max-width: 900px; margin: 0 auto; }
+    body.light .tab-content { background: #f5f5f5; border-color: #16a34a; }
     .tab-content.active { display: block; }
     
-    .lang-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid #3d3d3d; padding-bottom: 10px; flex-wrap: wrap; }
-    body.light .lang-tabs { border-bottom-color: #ddd; }
-    .lang-btn { padding: 8px 20px; background: transparent; border: 1px solid #3d3d3d; color: #808080; cursor: pointer; font-size: 0.85rem; border-radius: 4px; }
-    body.light .lang-btn { border-color: #ccc; color: #666; }
-    .lang-btn:hover { background: #3d3d3d; color: #d4d4d4; }
-    body.light .lang-btn:hover { background: #eee; color: #333; }
-    .lang-btn.active { background: #569cd6; border-color: #569cd6; color: #fff; }
+    .lang-tabs { display: flex; gap: 4px; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; flex-wrap: wrap; }
+    body.light .lang-tabs { border-color: #ddd; }
+    .lang-btn { padding: 8px 20px; background: transparent; border: 1px solid #4ade80; color: #4ade80; cursor: pointer; font-size: 0.95rem; font-family: inherit; }
+    body.light .lang-btn { border-color: #16a34a; color: #16a34a; }
+    .lang-btn:hover { background: rgba(74, 222, 128, 0.1); }
+    .lang-btn.active { background: #4ade80; color: #0a0a0a; }
+    body.light .lang-btn.active { background: #16a34a; color: #fff; }
     
     .lang-content { display: none; }
     .lang-content.active { display: block; }
     
-    .problem { margin-bottom: 30px; padding: 20px; background: #1e1e1e; border-radius: 8px; }
-    body.light .problem { background: #f9f9f9; }
-    .problem h2 { color: #4ec9b0; margin-bottom: 15px; font-size: 1.2rem; }
-    body.light .problem h2 { color: #008080; }
-    .problem p { color: #9cdcfe; margin-bottom: 15px; line-height: 1.6; }
-    body.light .problem p { color: #006699; }
-    pre { background: #0d0d0d; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'Fira Code', 'Consolas', monospace; font-size: 0.9rem; line-height: 1.5; }
-    body.light pre { background: #282c34; }
+    .problem { margin-bottom: 30px; padding: 20px; background: #0a0a0a; border: 1px solid #333; border-radius: 8px; }
+    body.light .problem { background: #fff; border-color: #ddd; }
+    .problem h2 { color: #4ade80; margin-bottom: 15px; font-size: 1.3rem; }
+    body.light .problem h2 { color: #16a34a; }
+    .problem p { color: #4ade80; opacity: 0.7; margin-bottom: 15px; line-height: 1.6; }
+    body.light .problem p { color: #333; }
+    pre { background: #000; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'VT323', 'Courier New', monospace; font-size: 1rem; line-height: 1.5; border: 1px solid #333; }
+    body.light pre { background: #1a1a1a; }
     
-    .keyword { color: #569cd6; }
+    .keyword { color: #60a5fa; }
     .comment { color: #6a9955; }
     .number { color: #b5cea8; }
     .string { color: #ce9178; }
@@ -94,12 +95,12 @@
     @media (max-width: 600px) {
       .header { flex-direction: column; gap: 15px; }
       .tabs { gap: 2px; }
-      .tab-btn { padding: 10px 15px; font-size: 0.85rem; }
-      .lang-btn { padding: 6px 12px; font-size: 0.75rem; }
+      .tab-btn { padding: 10px 15px; font-size: 0.95rem; }
+      .lang-btn { padding: 6px 12px; font-size: 0.85rem; }
     }
   </style>
 </head>
-<body class="dark">
+<body>
   <div class="header">
     <a href="index.html" class="back-btn">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
@@ -126,9 +127,9 @@
       <button class="lang-btn" onclick="showLang('claude', 'python')">PYTHON</button>
       <button class="lang-btn" onclick="showLang('claude', 'kotlin')">KOTLIN</button>
     </div>
-    <div id="claude-fortran" class="lang-content active"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
-    <div id="claude-python" class="lang-content"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
-    <div id="claude-kotlin" class="lang-content"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
+    <div id="claude-fortran" class="lang-content active"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
+    <div id="claude-python" class="lang-content"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
+    <div id="claude-kotlin" class="lang-content"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
   </div>
 
   <!-- Codex -->
@@ -138,9 +139,9 @@
       <button class="lang-btn" onclick="showLang('codex', 'python')">PYTHON</button>
       <button class="lang-btn" onclick="showLang('codex', 'kotlin')">KOTLIN</button>
     </div>
-    <div id="codex-fortran" class="lang-content active"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
-    <div id="codex-python" class="lang-content"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
-    <div id="codex-kotlin" class="lang-content"><p style="text-align:center;color:#666;padding:40px;">Coming soon...</p></div>
+    <div id="codex-fortran" class="lang-content active"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
+    <div id="codex-python" class="lang-content"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
+    <div id="codex-kotlin" class="lang-content"><p style="text-align:center;padding:40px;opacity:0.5;">Coming soon...</p></div>
   </div>
 
   <!-- MiniMax -->
