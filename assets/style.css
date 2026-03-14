@@ -114,28 +114,16 @@ code {
   color: #6a9955;
 }
 
-.operator {
-  color: #d4d4d4;
-}
-
-.fortran .keyword {
-  color: #c586c0;
-}
-
-.python .keyword {
+.claude .keyword {
   color: #569cd6;
 }
 
-.python .function {
-  color: #dcdcaa;
-}
-
-.kotlin .keyword {
+.codex .keyword {
   color: #c586c0;
 }
 
-.kotlin .function {
-  color: #dcdcaa;
+.minimax .keyword {
+  color: #4ec9b0;
 }
 
 @media (max-width: 768px) {
