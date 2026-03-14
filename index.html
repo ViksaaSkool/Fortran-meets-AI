@@ -222,6 +222,62 @@
       .gallery { padding: 40px 15px; }
       .gallery-item { margin-bottom: 60px; }
     }
+    
+    /* Lightbox */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      cursor: zoom-out;
+    }
+    
+    .lightbox.active { display: flex; justify-content: center; align-items: center; }
+    
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    
+    .lightbox-controls {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 1001;
+    }
+    
+    .lightbox-controls button {
+      padding: 10px 20px;
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      background: #4ade80;
+      color: #0a0a0a;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .lightbox-controls button:hover {
+      background: #fff;
+    }
+    
+    .lightbox-close {
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      font-size: 3rem;
+      color: #4ade80;
+      cursor: pointer;
+      z-index: 1001;
+    }
   </style>
 </head>
 <body>
@@ -244,17 +300,17 @@
     
     <div class="gallery-images">
       <div class="gallery-item">
-        <img src="img/fortran_front.jpg" alt="Fortran Programming Book" loading="lazy">
+        <img src="img/fortran_front.jpg" alt="Fortran Programming Book" loading="lazy" onclick="openLightbox(this.src)">
         <p class="caption">Original Fortran programming reference material</p>
       </div>
       
       <div class="gallery-item">
-        <img src="img/exam_pg_1_mk.jpg" alt="Exam Page 1" loading="lazy">
+        <img src="img/exam_pg_1_mk.jpg" alt="Exam Page 1" loading="lazy" onclick="openLightbox(this.src)">
         <p class="caption">University exam form 1978 - page 1</p>
       </div>
       
       <div class="gallery-item">
-        <img src="img/exam_pg_2_mk.jpg" alt="Exam Page 2" loading="lazy">
+        <img src="img/exam_pg_2_mk.jpg" alt="Exam Page 2" loading="lazy" onclick="openLightbox(this.src)">
         <p class="caption">University exam form 1978 - page 2</p>
       </div>
     </div>
@@ -266,12 +322,12 @@
     
     <div class="gallery-images">
       <div class="gallery-item">
-        <img src="img/exam_pg_1_en.svg" alt="Translated Exam Page 1" loading="lazy">
+        <img src="img/exam_pg_1_en.svg" alt="Translated Exam Page 1" loading="lazy" onclick="openLightbox(this.src)">
         <p class="caption">English translation - page 1</p>
       </div>
       
       <div class="gallery-item">
-        <img src="img/exam_pg_2_en.svg" alt="Translated Exam Page 2" loading="lazy">
+        <img src="img/exam_pg_2_en.svg" alt="Translated Exam Page 2" loading="lazy" onclick="openLightbox(this.src)">
         <p class="caption">English translation - page 2</p>
       </div>
     </div>
@@ -289,11 +345,65 @@
     </a>
   </section>
   
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="">
+    <div class="lightbox-controls">
+      <button onclick="zoomIn(event)">+</button>
+      <button onclick="zoomOut(event)">-</button>
+      <button onclick="resetZoom(event)">Reset</button>
+    </div>
+  </div>
+   
   <footer>
     <p>Fortran meets AI - A comparison of AI-generated solutions</p>
   </footer>
   
   <script>
+    let currentZoom = 1;
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    
+    function openLightbox(src) {
+      currentZoom = 1;
+      lightboxImg.style.transform = 'scale(1)';
+      lightboxImg.src = src;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    function zoomIn(e) {
+      e.stopPropagation();
+      currentZoom = Math.min(currentZoom + 0.5, 4);
+      lightboxImg.style.transform = 'scale(' + currentZoom + ')';
+    }
+    
+    function zoomOut(e) {
+      e.stopPropagation();
+      currentZoom = Math.max(currentZoom - 0.5, 0.5);
+      lightboxImg.style.transform = 'scale(' + currentZoom + ')';
+    }
+    
+    function resetZoom(e) {
+      e.stopPropagation();
+      currentZoom = 1;
+      lightboxImg.style.transform = 'scale(1)';
+    }
+    
+    document.addEventListener('keydown', function(e) {
+      if (!lightbox.classList.contains('active')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === '+' || e.key === '=') zoomIn(e);
+      if (e.key === '-') zoomOut(e);
+      if (e.key === '0') resetZoom(e);
+    });
+    
     // Scroll animations
     const observerOptions = {
       threshold: 0.1,
