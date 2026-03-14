@@ -84,7 +84,132 @@
     body.light .problem h2 { color: #16a34a; }
     .problem p { color: #4ade80; opacity: 0.7; margin-bottom: 15px; line-height: 1.6; }
     body.light .problem p { color: #333; }
-    pre { background: #000; padding: 15px; border-radius: 6px; overflow-x: auto; font-family: 'VT323', 'Courier New', monospace; font-size: 1rem; line-height: 1.5; border: 1px solid #333; }
+    .code-block { position: relative; }
+    .copy-btn {
+      width: 38px;
+      height: 38px;
+      border: 1px solid #4ade80;
+      background: rgba(10, 10, 10, 0.9);
+      color: #4ade80;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+      z-index: 1;
+    }
+    .copy-btn:hover { background: rgba(74, 222, 128, 0.12); transform: scale(1.05); }
+    .copy-btn.copied { background: #4ade80; color: #0a0a0a; }
+    .copy-btn svg { width: 18px; height: 18px; }
+    .code-actions {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 1;
+    }
+    body.light .copy-btn {
+      border-color: #16a34a;
+      color: #16a34a;
+      background: rgba(255, 255, 255, 0.95);
+    }
+    body.light .copy-btn:hover { background: rgba(22, 163, 74, 0.12); }
+    body.light .copy-btn.copied { background: #16a34a; color: #fff; }
+    .toast {
+      position: fixed;
+      right: 24px;
+      bottom: 24px;
+      padding: 14px 20px;
+      border: 1px solid #4ade80;
+      background: rgba(0, 0, 0, 0.92);
+      color: #4ade80;
+      border-radius: 8px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+      font-size: 1rem;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 2000;
+    }
+    .toast.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    body.light .toast {
+      border-color: #16a34a;
+      background: rgba(255, 255, 255, 0.96);
+      color: #16a34a;
+    }
+    .run-btn {
+      width: auto;
+      min-width: 74px;
+      padding: 0 12px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .run-btn:disabled {
+      opacity: 0.6;
+      cursor: wait;
+      transform: none;
+    }
+    .run-output {
+      margin-top: 12px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #050505;
+      overflow: hidden;
+    }
+    .run-output.hidden {
+      display: none;
+    }
+    .run-output-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid #222;
+      color: #4ade80;
+      background: rgba(74, 222, 128, 0.05);
+    }
+    .run-output-title {
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      font-size: 0.95rem;
+    }
+    .run-time {
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+    .run-output pre {
+      margin: 0;
+      padding: 14px;
+      padding-top: 14px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    body.light .run-output {
+      border-color: #d6d6d6;
+      background: #fafafa;
+    }
+    body.light .run-output-header {
+      border-bottom-color: #dcdcdc;
+      color: #16a34a;
+      background: rgba(22, 163, 74, 0.08);
+    }
+    body.light .run-output pre {
+      background: transparent;
+      color: #111;
+    }
+    pre { background: #000; padding: 15px; padding-top: 58px; border-radius: 6px; overflow-x: auto; font-family: 'VT323', 'Courier New', monospace; font-size: 1rem; line-height: 1.5; border: 1px solid #333; }
     body.light pre { background: #1a1a1a; }
     
     .keyword { color: #60a5fa; }
@@ -156,8 +281,40 @@
     <div id="minimax-kotlin" class="lang-content"></div>
   </div>
 
+  <div id="toast" class="toast" role="status" aria-live="polite">Code snippet copied</div>
+
   <script>
+    var pyodideReadyPromise = null;
+    var pyodideInstance = null;
+    var selectedLangByModel = {
+      claude: 'fortran',
+      codex: 'fortran',
+      minimax: 'fortran'
+    };
     var data = {
+      codex: {
+        fortran: [
+          { title: "Problem 1: Product Computation", desc: "Compute P = ∏(n·k / (k·2ᵏ)) for k = 1 to n, where n > 10.", code: "PROGRAM PRODUCT\n  IMPLICIT NONE\n  INTEGER :: n, k\n  REAL(8) :: p\n\n  READ(*, *) n\n  IF (n <= 10) THEN\n    PRINT *, 'n must be greater than 10'\n    STOP\n  END IF\n\n  p = 1.0D0\n  DO k = 1, n\n    p = p * DBLE(n) / (2.0D0 ** k)\n  END DO\n\n  PRINT '(A, ES16.8)', 'P = ', p\nEND PROGRAM PRODUCT" },
+          { title: "Problem 2: Function Tabulation", desc: "Tabulate y = (2 + sin(x)) / x for x in [-5/6, 4π/5] with step π/4, handling x = 0 safely.", code: "PROGRAM TABULATE\n  IMPLICIT NONE\n  REAL(8), PARAMETER :: pi = 3.14159D0\n  REAL(8), PARAMETER :: x_start = -5.0D0 / 6.0D0\n  REAL(8), PARAMETER :: x_step = pi / 4.0D0\n  REAL(8), PARAMETER :: x_end = 4.0D0 * pi / 5.0D0\n  REAL(8) :: x, y\n\n  PRINT '(A12, A20)', 'x', 'y'\n  x = x_start\n  DO WHILE (x <= x_end + 1.0D-12)\n    IF (ABS(x) < 1.0D-12) THEN\n      PRINT '(F12.6, A20)', x, 'undefined'\n    ELSE\n      y = (2.0D0 + SIN(x)) / x\n      PRINT '(F12.6, F20.6)', x, y\n    END IF\n    x = x + x_step\n  END DO\nEND PROGRAM TABULATE" },
+          { title: "Problem 3: Sum of Squares and Vector Norm", desc: "Compute S = Σaₖ² for m ≤ 100 and use it to compute ||x|| = √(Σxₖ²).", code: "PROGRAM VECTOR_NORM\n  IMPLICIT NONE\n  INTEGER, PARAMETER :: max_m = 100\n  INTEGER :: m, k\n  REAL(8) :: x(max_m), s, norm_value\n\n  READ(*, *) m\n  IF (m < 1 .OR. m > max_m) THEN\n    PRINT *, 'm must be between 1 and 100'\n    STOP\n  END IF\n\n  READ(*, *) (x(k), k = 1, m)\n\n  s = sum_of_squares(x, m)\n  norm_value = SQRT(s)\n\n  PRINT '(A, F12.6)', 'S = ', s\n  PRINT '(A, F12.6)', '||x|| = ', norm_value\n\nCONTAINS\n  REAL(8) FUNCTION sum_of_squares(a, m)\n    IMPLICIT NONE\n    INTEGER, INTENT(IN) :: m\n    REAL(8), INTENT(IN) :: a(max_m)\n    INTEGER :: i\n\n    sum_of_squares = 0.0D0\n    DO i = 1, m\n      sum_of_squares = sum_of_squares + a(i) * a(i)\n    END DO\n  END FUNCTION sum_of_squares\nEND PROGRAM VECTOR_NORM" },
+          { title: "Problem 4: Maximum Coefficient", desc: "Determine the maximum coefficient of a vector with n elements, where n ≤ 100.", code: "PROGRAM MAX_COEFFICIENT\n  IMPLICIT NONE\n  INTEGER, PARAMETER :: max_n = 100\n  INTEGER :: n, i\n  REAL(8) :: x(max_n), max_value\n\n  READ(*, *) n\n  IF (n < 1 .OR. n > max_n) THEN\n    PRINT *, 'n must be between 1 and 100'\n    STOP\n  END IF\n\n  READ(*, *) (x(i), i = 1, n)\n  max_value = x(1)\n\n  DO i = 2, n\n    IF (x(i) > max_value) max_value = x(i)\n  END DO\n\n  PRINT '(A, F12.6)', 'max = ', max_value\nEND PROGRAM MAX_COEFFICIENT" },
+          { title: "Problem 5: Mean of Smallest Elements", desc: "Compute the arithmetic mean of the smallest elements of m different vectors.", code: "PROGRAM MEAN_OF_MINIMA\n  IMPLICIT NONE\n  INTEGER, PARAMETER :: max_n = 100\n  INTEGER :: m, n, i, j\n  REAL(8) :: x(max_n), min_value, total\n\n  READ(*, *) m\n  IF (m < 1) THEN\n    PRINT *, 'm must be positive'\n    STOP\n  END IF\n\n  total = 0.0D0\n  DO j = 1, m\n    READ(*, *) n\n    IF (n < 1 .OR. n > max_n) THEN\n      PRINT *, 'vector length must be between 1 and 100'\n      STOP\n    END IF\n\n    READ(*, *) (x(i), i = 1, n)\n    min_value = x(1)\n    DO i = 2, n\n      IF (x(i) < min_value) min_value = x(i)\n    END DO\n    total = total + min_value\n  END DO\n\n  PRINT '(A, F12.6)', 'mean = ', total / DBLE(m)\nEND PROGRAM MEAN_OF_MINIMA" }
+        ],
+        python: [
+          { title: "Problem 1: Product Computation", desc: "Compute P = ∏(n·k / (k·2ᵏ)) for k = 1 to n, where n > 10.", code: "def compute_product(n: int) -> float:\n    if n <= 10:\n        raise ValueError('n must be greater than 10')\n\n    p = 1.0\n    for k in range(1, n + 1):\n        p *= n / (2 ** k)\n    return p\n\n\nn = 11\nprint(f'P = {compute_product(n):.8e}')" },
+          { title: "Problem 2: Function Tabulation", desc: "Tabulate y = (2 + sin(x)) / x for x in [-5/6, 4π/5] with step π/4, handling x = 0 safely.", code: "import math\n\n\ndef compute_y(x: float):\n    if abs(x) < 1e-12:\n        return None\n    return (2 + math.sin(x)) / x\n\n\npi = 3.14159\nx = -5 / 6\nstep = pi / 4\nx_end = 4 * pi / 5\n\nprint(f\"{'x':>12} {'y':>20}\")\nwhile x <= x_end + 1e-12:\n    y = compute_y(x)\n    shown = 'undefined' if y is None else f'{y:.6f}'\n    print(f'{x:12.6f} {shown:>20}')\n    x += step" },
+          { title: "Problem 3: Sum of Squares and Vector Norm", desc: "Compute S = Σaₖ² for m ≤ 100 and use it to compute ||x|| = √(Σxₖ²).", code: "import math\n\n\ndef sum_of_squares(values):\n    if not 1 <= len(values) <= 100:\n        raise ValueError('m must be between 1 and 100')\n    return sum(value * value for value in values)\n\n\ndef vector_norm(values):\n    return math.sqrt(sum_of_squares(values))\n\n\nx = [3.0, 4.0]\ns = sum_of_squares(x)\nprint(f'S = {s:.6f}')\nprint(f'||x|| = {vector_norm(x):.6f}')" },
+          { title: "Problem 4: Maximum Coefficient", desc: "Determine the maximum coefficient of a vector with n elements, where n ≤ 100.", code: "def max_coefficient(values):\n    if not 1 <= len(values) <= 100:\n        raise ValueError('n must be between 1 and 100')\n    return max(values)\n\n\nx = [2, 8, -6, 4, 5]\nprint(f'max = {max_coefficient(x):.6f}')" },
+          { title: "Problem 5: Mean of Smallest Elements", desc: "Compute the arithmetic mean of the smallest elements of m different vectors.", code: "def mean_of_minima(vectors):\n    if not vectors:\n        raise ValueError('at least one vector is required')\n    minima = [min(vector) for vector in vectors]\n    return sum(minima) / len(minima)\n\n\nvectors = [\n    [2, 8, -6, 4, 5],\n    [6, 14, 2, 4, 7, 9],\n]\nprint(f'mean = {mean_of_minima(vectors):.6f}')" }
+        ],
+        kotlin: [
+          { title: "Problem 1: Product Computation", desc: "Compute P = ∏(n·k / (k·2ᵏ)) for k = 1 to n, where n > 10.", code: "import kotlin.math.pow\n\nfun computeProduct(n: Int): Double {\n    require(n > 10) { \"n must be greater than 10\" }\n\n    var p = 1.0\n    for (k in 1..n) {\n        p *= n.toDouble() / 2.0.pow(k.toDouble())\n    }\n    return p\n}\n\nfun main() {\n    val n = 11\n    println(\"P = %.8e\".format(computeProduct(n)))\n}" },
+          { title: "Problem 2: Function Tabulation", desc: "Tabulate y = (2 + sin(x)) / x for x in [-5/6, 4π/5] with step π/4, handling x = 0 safely.", code: "import kotlin.math.abs\nimport kotlin.math.sin\n\nfun computeY(x: Double): Double? {\n    return if (abs(x) < 1e-12) null else (2.0 + sin(x)) / x\n}\n\nfun main() {\n    val pi = 3.14159\n    val step = pi / 4.0\n    val end = 4.0 * pi / 5.0\n    var x = -5.0 / 6.0\n\n    println(\"%12s %20s\".format(\"x\", \"y\"))\n    while (x <= end + 1e-12) {\n        val y = computeY(x)\n        val shown = y?.let { \"%.6f\".format(it) } ?: \"undefined\"\n        println(\"%12.6f %20s\".format(x, shown))\n        x += step\n    }\n}" },
+          { title: "Problem 3: Sum of Squares and Vector Norm", desc: "Compute S = Σaₖ² for m ≤ 100 and use it to compute ||x|| = √(Σxₖ²).", code: "import kotlin.math.sqrt\n\nfun sumOfSquares(values: List<Double>): Double {\n    require(values.isNotEmpty() && values.size <= 100) { \"m must be between 1 and 100\" }\n    return values.sumOf { it * it }\n}\n\nfun vectorNorm(values: List<Double>): Double = sqrt(sumOfSquares(values))\n\nfun main() {\n    val x = listOf(3.0, 4.0)\n    println(\"S = %.6f\".format(sumOfSquares(x)))\n    println(\"||x|| = %.6f\".format(vectorNorm(x)))\n}" },
+          { title: "Problem 4: Maximum Coefficient", desc: "Determine the maximum coefficient of a vector with n elements, where n ≤ 100.", code: "fun maxCoefficient(values: List<Double>): Double {\n    require(values.isNotEmpty() && values.size <= 100) { \"n must be between 1 and 100\" }\n    return values.maxOrNull()!!\n}\n\nfun main() {\n    val x = listOf(2.0, 8.0, -6.0, 4.0, 5.0)\n    println(\"max = %.6f\".format(maxCoefficient(x)))\n}" },
+          { title: "Problem 5: Mean of Smallest Elements", desc: "Compute the arithmetic mean of the smallest elements of m different vectors.", code: "fun meanOfMinima(vectors: List<List<Double>>): Double {\n    require(vectors.isNotEmpty()) { \"at least one vector is required\" }\n    return vectors.map { it.minOrNull()!! }.average()\n}\n\nfun main() {\n    val vectors = listOf(\n        listOf(2.0, 8.0, -6.0, 4.0, 5.0),\n        listOf(6.0, 14.0, 2.0, 4.0, 7.0, 9.0)\n    )\n    println(\"mean = %.6f\".format(meanOfMinima(vectors)))\n}" }
+        ]
+      },
       minimax: {
         fortran: [
           { title: "Problem 1: Product Computation", desc: "Compute P = ∏(n·k / (k·2ᵏ)) for k=1 to n where n > 10", code: "      PROGRAM PROD\n      INTEGER N,K\n      REAL P\n      READ(*,*) N\n      P=1.0\n      DO 10 K=1,N\n10    P=P*(FLOAT(N)*FLOAT(K))/(FLOAT(K)*2.**K)\n      PRINT *,P\n      END" },
@@ -205,8 +362,134 @@
       return h;
     }
 
+    function copyCode(button) {
+      var code = button.getAttribute('data-code') || '';
+
+      function markCopied() {
+        var label = button.querySelector('.copy-label');
+        button.classList.add('copied');
+        button.setAttribute('aria-label', 'Copied');
+        if (label) label.textContent = 'Copied';
+        showToast('Code snippet copied');
+        setTimeout(function() {
+          button.classList.remove('copied');
+          button.setAttribute('aria-label', 'Copy code');
+          if (label) label.textContent = 'Copy';
+        }, 1500);
+      }
+
+      function fallbackCopy(text) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'absolute';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        markCopied();
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(markCopied).catch(function() {
+          fallbackCopy(code);
+        });
+      } else {
+        fallbackCopy(code);
+      }
+    }
+
+    var toastTimer;
+    function showToast(message) {
+      var toast = document.getElementById('toast');
+      if (!toast) return;
+
+      toast.textContent = message;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(function() {
+        toast.classList.remove('visible');
+      }, 1800);
+    }
+
+    function ensurePyodide() {
+      if (pyodideReadyPromise) return pyodideReadyPromise;
+
+      pyodideReadyPromise = new Promise(function(resolve, reject) {
+        function loadRuntime() {
+          loadPyodide({
+            indexURL: 'https://cdn.jsdelivr.net/pyodide/v0.27.2/full/'
+          }).then(function(instance) {
+            pyodideInstance = instance;
+            resolve(instance);
+          }).catch(reject);
+        }
+
+        if (window.loadPyodide) {
+          loadRuntime();
+          return;
+        }
+
+        var script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/pyodide/v0.27.2/full/pyodide.js';
+        script.onload = loadRuntime;
+        script.onerror = function() {
+          reject(new Error('Failed to load Pyodide'));
+        };
+        document.head.appendChild(script);
+      });
+
+      return pyodideReadyPromise;
+    }
+
+    async function runPython(button) {
+      var code = button.getAttribute('data-code') || '';
+      var outputId = button.getAttribute('data-output-id');
+      var output = document.getElementById(outputId);
+      if (!output) return;
+
+      var timeNode = output.querySelector('.run-time');
+      var bodyNode = output.querySelector('.run-output-body');
+
+      button.disabled = true;
+      button.textContent = 'Running';
+      output.classList.remove('hidden');
+      timeNode.textContent = 'Loading runtime...';
+      bodyNode.textContent = '';
+
+      try {
+        var pyodide = await ensurePyodide();
+        var lines = [];
+
+        pyodide.setStdout({
+          batched: function(text) {
+            lines.push(text);
+          }
+        });
+        pyodide.setStderr({
+          batched: function(text) {
+            lines.push(text);
+          }
+        });
+
+        var start = performance.now();
+        await pyodide.runPythonAsync(code);
+        var duration = performance.now() - start;
+
+        bodyNode.textContent = lines.join('\n').trim() || '(no output)';
+        timeNode.textContent = 'Completed in ' + duration.toFixed(2) + ' ms';
+      } catch (error) {
+        timeNode.textContent = 'Execution failed';
+        bodyNode.textContent = String(error);
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Run';
+      }
+    }
+
     function render() {
-      var models = ['minimax'];
+      var models = Object.keys(data);
       var langs = ['fortran', 'python', 'kotlin'];
       
       models.forEach(function(model) {
@@ -217,15 +500,64 @@
           var problems = data[model][lang];
           var html = '';
           problems.forEach(function(p) {
+            var outputId = model + '-' + lang + '-' + p.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
             html += '<div class="problem">';
             html += '<h2>' + escapeHtml(p.title) + '</h2>';
             html += '<p>' + escapeHtml(p.desc) + '</p>';
+            html += '<div class="code-block">';
+            html += '<div class="code-actions">';
+            if (lang === 'python') {
+              html += '<button class="copy-btn run-btn" type="button" data-code="' + escapeHtml(p.code) + '" data-output-id="' + escapeHtml(outputId) + '" onclick="runPython(this)">Run</button>';
+            }
+            html += '<button class="copy-btn" type="button" aria-label="Copy code" data-code="' + escapeHtml(p.code) + '" onclick="copyCode(this)">';
+            html += '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">';
+            html += '<rect x="9" y="9" width="13" height="13" rx="2"></rect>';
+            html += '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>';
+            html += '</svg>';
+            html += '<span class="copy-label" style="display:none;">Copy</span>';
+            html += '</button>';
+            html += '</div>';
             html += '<pre><code>' + highlight(p.code, lang) + '</code></pre>';
+            if (lang === 'python') {
+              html += '<div id="' + escapeHtml(outputId) + '" class="run-output hidden">';
+              html += '<div class="run-output-header">';
+              html += '<span class="run-output-title">Python Output</span>';
+              html += '<span class="run-time">Not run yet</span>';
+              html += '</div>';
+              html += '<pre class="run-output-body"></pre>';
+              html += '</div>';
+            }
+            html += '</div>';
             html += '</div>';
           });
           container.innerHTML = html;
         });
       });
+    }
+
+    function activateLanguageTab(model, lang) {
+      var modelContainer = document.getElementById(model);
+      if (!modelContainer) return;
+
+      var langBtns = modelContainer.querySelectorAll('.lang-btn');
+      langBtns.forEach(function(btn) {
+        btn.classList.remove('active');
+      });
+
+      var selectedButton = modelContainer.querySelector('.lang-btn[onclick="showLang(\'' + model + '\', \'' + lang + '\')"]');
+      if (selectedButton) {
+        selectedButton.classList.add('active');
+      }
+
+      var langContents = modelContainer.querySelectorAll('.lang-content');
+      langContents.forEach(function(content) {
+        content.classList.remove('active');
+      });
+
+      var selectedContent = document.getElementById(model + '-' + lang);
+      if (selectedContent) {
+        selectedContent.classList.add('active');
+      }
     }
 
     function showModel(model) {
@@ -236,17 +568,13 @@
       var contents = document.querySelectorAll('.tab-content');
       contents.forEach(function(c) { c.classList.remove('active'); });
       document.getElementById(model).classList.add('active');
-      
-      var modelContainer = document.getElementById(model);
-      var langBtns = modelContainer.querySelectorAll('.lang-btn');
-      var langContents = modelContainer.querySelectorAll('.lang-content');
-      langBtns.forEach(function(b) { b.classList.remove('active'); });
-      langContents.forEach(function(c) { c.classList.remove('active'); });
-      if (langBtns[0]) langBtns[0].classList.add('active');
-      if (langContents[0]) langContents[0].classList.add('active');
+
+      activateLanguageTab(model, selectedLangByModel[model] || 'fortran');
     }
 
     function showLang(model, lang) {
+      selectedLangByModel[model] = lang;
+
       var modelContainer = document.getElementById(model);
       var langBtns = modelContainer.querySelectorAll('.lang-btn');
       langBtns.forEach(function(btn) { btn.classList.remove('active'); });
