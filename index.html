@@ -220,15 +220,12 @@
 
     function toggleTheme() {
       var body = document.body;
-      var btn = document.querySelector('.theme-toggle');
       if (body.classList.contains('dark')) {
         body.classList.remove('dark');
         body.classList.add('light');
-        btn.textContent = 'Dark';
       } else {
         body.classList.remove('light');
         body.classList.add('dark');
-        btn.textContent = 'Light';
       }
     }
 
