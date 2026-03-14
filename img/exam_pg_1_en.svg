@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1754" viewBox="0 0 1240 1754">
+  <rect width="1240" height="1754" fill="#f5f1e8"/>
+  <rect x="56" y="56" width="1128" height="1642" rx="8" fill="#faf7f0" stroke="#cfc7b8" stroke-width="2"/>
+  <text x="120" y="150" font-family="'Courier New', monospace" font-size="34" font-weight="700" fill="#222">HOME COMPUTER PROGRAMMING</text>
+  <text x="915" y="150" font-family="'Courier New', monospace" font-size="30" fill="#222">25 Jan 1978</text>
+
+  <text x="120" y="235" font-family="'Courier New', monospace" font-size="30" font-weight="700" fill="#222">Group I</text>
+
+  <text x="120" y="305" font-family="'Courier New', monospace" font-size="27" fill="#222">Problem 1. Draw a flowchart and write a program to compute the product:</text>
+  <text x="260" y="370" font-family="'Courier New', monospace" font-size="33" fill="#222">n</text>
+  <text x="220" y="410" font-family="'Courier New', monospace" font-size="37" fill="#222">P = ∏   nk / (k · 2ᵏ)</text>
+  <text x="254" y="445" font-family="'Courier New', monospace" font-size="24" fill="#222">k=1</text>
+  <text x="120" y="505" font-family="'Courier New', monospace" font-size="27" fill="#222">where n &gt; 10.</text>
+  <text x="120" y="550" font-family="'Courier New', monospace" font-size="27" fill="#222">Draw the input card as well.</text>
+  <text x="120" y="595" font-family="'Courier New', monospace" font-size="27" fill="#222">Explain how you would verify the result and carry out that verification.</text>
+  <text x="120" y="640" font-family="'Courier New', monospace" font-size="22" fill="#666">Note: the formula in Problem 1 is reconstructed from a faint scan.</text>
+
+  <text x="120" y="735" font-family="'Courier New', monospace" font-size="27" fill="#222">Problem 2. Draw a flowchart and tabulate the function:</text>
+  <text x="260" y="800" font-family="'Courier New', monospace" font-size="37" fill="#222">y = (2 + sin(x)) / x</text>
+  <text x="120" y="860" font-family="'Courier New', monospace" font-size="27" fill="#222">for the interval  x ∈ [ -5/6  (π/4)  4π/5 ],   π = 3.14159</text>
+  <text x="120" y="905" font-family="'Courier New', monospace" font-size="24" fill="#222">(the number in parentheses is the step size).</text>
+  <text x="120" y="950" font-family="'Courier New', monospace" font-size="27" fill="#222">Pay special attention to the case x = 0.</text>
+  <text x="120" y="995" font-family="'Courier New', monospace" font-size="27" fill="#222">Explain how you would verify the result and carry out that verification.</text>
+
+  <text x="120" y="1090" font-family="'Courier New', monospace" font-size="27" fill="#222">Problem 3. Draw a flowchart and write a function subprogram</text>
+  <text x="120" y="1135" font-family="'Courier New', monospace" font-size="27" fill="#222">to compute the sum:</text>
+  <text x="250" y="1200" font-family="'Courier New', monospace" font-size="33" fill="#222">m</text>
+  <text x="220" y="1240" font-family="'Courier New', monospace" font-size="37" fill="#222">S = Σ   aₖ²</text>
+  <text x="254" y="1275" font-family="'Courier New', monospace" font-size="24" fill="#222">k=1</text>
+  <text x="120" y="1335" font-family="'Courier New', monospace" font-size="27" fill="#222">for a sequence of m elements, where m ≤ 100 and m is a natural number.</text>
+  <text x="120" y="1380" font-family="'Courier New', monospace" font-size="27" fill="#222">Use that subprogram to compute the norm of a vector</text>
+  <text x="120" y="1425" font-family="'Courier New', monospace" font-size="27" fill="#222">x = (xⱼ, j = 1, ..., m), defined by</text>
+  <text x="250" y="1490" font-family="'Courier New', monospace" font-size="37" fill="#222">||x|| = ( Σ xₖ² )¹ᐟ²</text>
+  <text x="435" y="1458" font-family="'Courier New', monospace" font-size="26" fill="#222">m</text>
+  <text x="442" y="1518" font-family="'Courier New', monospace" font-size="22" fill="#222">k=1</text>
+  <text x="120" y="1570" font-family="'Courier New', monospace" font-size="27" fill="#222">Draw the input card as well.</text>
+  <text x="120" y="1615" font-family="'Courier New', monospace" font-size="27" fill="#222">Explain how you would verify the result and carry out that verification.</text>
+</svg>

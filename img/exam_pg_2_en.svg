@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1240" height="1754" viewBox="0 0 1240 1754">
+  <rect width="1240" height="1754" fill="#f5f1e8"/>
+  <rect x="56" y="56" width="1128" height="1642" rx="8" fill="#faf7f0" stroke="#cfc7b8" stroke-width="2"/>
+
+  <text x="1020" y="145" font-family="'Courier New', monospace" font-size="32" fill="#222">-2-</text>
+
+  <text x="120" y="245" font-family="'Courier New', monospace" font-size="27" fill="#222">Problem 4. Draw a flowchart and write a subprogram</text>
+  <text x="120" y="290" font-family="'Courier New', monospace" font-size="27" fill="#222">that determines the [blurred term in scan] coefficient of a vector</text>
+  <text x="120" y="335" font-family="'Courier New', monospace" font-size="27" fill="#222">with n elements, where n ≤ 100.</text>
+  <text x="120" y="380" font-family="'Courier New', monospace" font-size="22" fill="#666">Note: the key adjective in Problem 4 is too blurred in the source image to recover reliably.</text>
+
+  <text x="120" y="470" font-family="'Courier New', monospace" font-size="27" fill="#222">Problem 5. Draw a flowchart and write a main program</text>
+  <text x="120" y="515" font-family="'Courier New', monospace" font-size="27" fill="#222">to compute the arithmetic mean of the smallest elements</text>
+  <text x="120" y="560" font-family="'Courier New', monospace" font-size="27" fill="#222">of m different vectors.</text>
+
+  <text x="120" y="650" font-family="'Courier New', monospace" font-size="27" fill="#222">The program is to be tested for:</text>
+  <text x="160" y="710" font-family="'Courier New', monospace" font-size="31" fill="#222">x̄₁ = (2; 8; -6; 4; 5)</text>
+  <text x="160" y="760" font-family="'Courier New', monospace" font-size="31" fill="#222">x̄₂ = (6; 14; 2; 4; 7; 9)</text>
+
+  <text x="120" y="850" font-family="'Courier New', monospace" font-size="27" fill="#222">Draw the input card as well.</text>
+  <text x="120" y="895" font-family="'Courier New', monospace" font-size="27" fill="#222">Explain how you would determine whether the program is correct.</text>
+
+  <text x="120" y="985" font-family="'Courier New', monospace" font-size="27" fill="#222">Note: the arithmetic mean of n elements x₁, x₂, ..., xₙ</text>
+  <text x="120" y="1030" font-family="'Courier New', monospace" font-size="27" fill="#222">is computed by the expression:</text>
+  <text x="260" y="1120" font-family="'Courier New', monospace" font-size="38" fill="#222">x̄ = (1 / n) Σ xₖ</text>
+  <text x="462" y="1088" font-family="'Courier New', monospace" font-size="26" fill="#222">n</text>
+  <text x="468" y="1148" font-family="'Courier New', monospace" font-size="22" fill="#222">k=1</text>
+</svg>
