@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1820" height="856" viewBox="0 0 1820 856">
+<rect width="100%" height="100%" fill="#f3efe4"/>
+<text x="40" y="28" font-family="Courier New, monospace" font-size="24" font-weight="700" fill="#1a1a1a">Python Results Matrix from solutions.html</text>
+<text x="40" y="32" font-family="Courier New, monospace" font-size="12" fill="#555">Executed locally from the deployed project file. Errors shown as final exception message only.</text>
+<rect x="40" y="40" width="1740" height="54" fill="#1c3d5a" rx="6"/>
+<rect x="40" y="40" width="180" height="54" fill="none" stroke="#d9d2c2" stroke-width="1"/>
+<text x="52" y="74" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Problem</text>
+<rect x="220" y="40" width="520" height="54" fill="none" stroke="#d9d2c2" stroke-width="1"/>
+<text x="232" y="74" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Claude Code</text>
+<rect x="740" y="40" width="520" height="54" fill="none" stroke="#d9d2c2" stroke-width="1"/>
+<text x="752" y="74" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Codex</text>
+<rect x="1260" y="40" width="520" height="54" fill="none" stroke="#d9d2c2" stroke-width="1"/>
+<text x="1272" y="74" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">MiniMax</text>
+<rect x="40" y="94" width="1740" height="102" fill="#fffdf7"/>
+<rect x="40" y="94" width="180" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="52" y="126" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">
+<tspan x="52" dy="0">Problem 1</tspan>
+</text>
+<rect x="220" y="94" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="232" y="126" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="232" dy="0">n = 11  P = 1.8313940065972934e+41</tspan>
+<tspan x="232" dy="26">| Verification (closed form): P =</tspan>
+<tspan x="232" dy="26">1.8313940065972934e+41</tspan>
+</text>
+<rect x="740" y="94" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="752" y="126" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="752" dy="0">P = 3.86669416e-09</tspan>
+</text>
+<rect x="1260" y="94" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="1272" y="126" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="1272" dy="0">3.866694163898936e-09</tspan>
+</text>
+<rect x="40" y="196" width="1740" height="388" fill="#f7f2e8"/>
+<rect x="40" y="196" width="180" height="388" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="52" y="228" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">
+<tspan x="52" dy="0">Problem 2</tspan>
+</text>
+<rect x="220" y="196" width="520" height="388" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="232" y="228" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="232" dy="0">x               y |</tspan>
+<tspan x="232" dy="26">------------------------------ |</tspan>
+<tspan x="232" dy="26">-0.833333       -1.511788 |</tspan>
+<tspan x="232" dy="26">-0.047936      -40.722824 |</tspan>
+<tspan x="232" dy="26">0.737462        3.623797 |</tspan>
+<tspan x="232" dy="26">1.522859        1.969224 |</tspan>
+<tspan x="232" dy="26">2.308257        1.187120</tspan>
+</text>
+<rect x="740" y="196" width="520" height="388" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="752" y="228" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="752" dy="0">x                    y |</tspan>
+<tspan x="752" dy="26">-0.833333            -1.511788 |</tspan>
+<tspan x="752" dy="26">-0.047936           -40.722824 |</tspan>
+<tspan x="752" dy="26">0.737462             3.623797 |</tspan>
+<tspan x="752" dy="26">1.522859             1.969224 |</tspan>
+<tspan x="752" dy="26">2.308257             1.187120</tspan>
+</text>
+<rect x="1260" y="196" width="520" height="388" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="1272" y="228" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="1272" dy="0">-2.6179916666666667</tspan>
+<tspan x="1272" dy="26">-0.572957547587462 |</tspan>
+<tspan x="1272" dy="26">-1.8325941666666667</tspan>
+<tspan x="1272" dy="26">-0.5642677423555785 |</tspan>
+<tspan x="1272" dy="26">-1.0471966666666668</tspan>
+<tspan x="1272" dy="26">-1.0828673109612 |</tspan>
+<tspan x="1272" dy="26">-0.2617991666666668</tspan>
+<tspan x="1272" dy="26">-6.650827772542161 |</tspan>
+<tspan x="1272" dy="26">0.5235983333333332</tspan>
+<tspan x="1272" dy="26">4.774651594232074 |</tspan>
+<tspan x="1272" dy="26">1.3089958333333331</tspan>
+<tspan x="1272" dy="26">2.265802124495167 |</tspan>
+<tspan x="1272" dy="26">2.094393333333333</tspan>
+<tspan x="1272" dy="26">1.3684279083106077</tspan>
+</text>
+<rect x="40" y="584" width="1740" height="76" fill="#fffdf7"/>
+<rect x="40" y="584" width="180" height="76" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="52" y="616" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">
+<tspan x="52" dy="0">Problem 3</tspan>
+</text>
+<rect x="220" y="584" width="520" height="76" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="232" y="616" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="232" dy="0">m = 5  ||x|| = 13.341664 | Verify:</tspan>
+<tspan x="232" dy="26">norm([3,4]) = 5.0</tspan>
+</text>
+<rect x="740" y="584" width="520" height="76" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="752" y="616" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="752" dy="0">S = 25.000000 | ||x|| = 5.000000</tspan>
+</text>
+<rect x="1260" y="584" width="520" height="76" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="1272" y="616" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="1272" dy="0">178 13.341664064126334</tspan>
+</text>
+<rect x="40" y="660" width="1740" height="54" fill="#f7f2e8"/>
+<rect x="40" y="660" width="180" height="54" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="52" y="692" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">
+<tspan x="52" dy="0">Problem 4</tspan>
+</text>
+<rect x="220" y="660" width="520" height="54" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="232" y="692" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="232" dy="0">min = -6  at index 3</tspan>
+</text>
+<rect x="740" y="660" width="520" height="54" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="752" y="692" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="752" dy="0">max = 8.000000</tspan>
+</text>
+<rect x="1260" y="660" width="520" height="54" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="1272" y="692" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="1272" dy="0">8</tspan>
+</text>
+<rect x="40" y="714" width="1740" height="102" fill="#fffdf7"/>
+<rect x="40" y="714" width="180" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="52" y="746" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">
+<tspan x="52" dy="0">Problem 5</tspan>
+</text>
+<rect x="220" y="714" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="232" y="746" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="232" dy="0">Vector 1: min = -6 | Vector 2: min</tspan>
+<tspan x="232" dy="26">= 2 | Arithmetic mean of minimums</tspan>
+<tspan x="232" dy="26">= -2.0</tspan>
+</text>
+<rect x="740" y="714" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="752" y="746" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="752" dy="0">mean = -2.000000</tspan>
+</text>
+<rect x="1260" y="714" width="520" height="102" fill="none" stroke="#c9c0ae" stroke-width="1"/>
+<text x="1272" y="746" font-family="Courier New, monospace" font-size="18" font-weight="400" fill="#2c2c2c">
+<tspan x="1272" dy="0">-2.0</tspan>
+</text>
+</svg>

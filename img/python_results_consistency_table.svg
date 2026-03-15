@@ -1,0 +1,169 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1882" height="982" viewBox="0 0 1882 982">
+<rect width="100%" height="100%" fill="#f2efe7"/>
+<text x="36" y="30" font-family="Courier New, monospace" font-size="26" font-weight="700" fill="#111">Python Output Comparison with Consistency Markers</text>
+<text x="36" y="34" font-family="Courier New, monospace" font-size="12" fill="#555">Green = consistent with translated exam text, red = inconsistent, amber = unresolved because the scan is ambiguous.</text>
+<rect x="36" y="922" width="110" height="30" rx="6" fill="#dff3d8" stroke="#b9b09d"/>
+<text x="52" y="942" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#2f6b2f">Yes</text>
+<rect x="162" y="922" width="110" height="30" rx="6" fill="#f8d7d7" stroke="#b9b09d"/>
+<text x="178" y="942" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#8a2d2d">No</text>
+<rect x="288" y="922" width="110" height="30" rx="6" fill="#f6ebc8" stroke="#b9b09d"/>
+<text x="304" y="942" font-family="Courier New, monospace" font-size="16" font-weight="700" fill="#7d6214">Unclear</text>
+<rect x="36" y="36" width="1810" height="56" fill="#23384d" rx="6"/>
+<rect x="36" y="36" width="120" height="56" fill="none" stroke="#d0c7b7"/>
+<text x="48" y="71" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Problem</text>
+<rect x="156" y="36" width="430" height="56" fill="none" stroke="#d0c7b7"/>
+<text x="168" y="71" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Claude Code</text>
+<rect x="586" y="36" width="430" height="56" fill="none" stroke="#d0c7b7"/>
+<text x="598" y="71" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Codex</text>
+<rect x="1016" y="36" width="430" height="56" fill="none" stroke="#d0c7b7"/>
+<text x="1028" y="71" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">MiniMax</text>
+<rect x="1446" y="36" width="400" height="56" fill="none" stroke="#d0c7b7"/>
+<text x="1458" y="71" font-family="Courier New, monospace" font-size="20" font-weight="700" fill="#f8f6ef">Note</text>
+<rect x="36" y="92" width="1810" height="124" fill="#fffdf8"/>
+<rect x="36" y="92" width="120" height="124" fill="none" stroke="#c9c0ae"/>
+<text x="48" y="122" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">Problem 1</text>
+<rect x="156" y="92" width="430" height="124" fill="#f8d7d7" stroke="#c9c0ae"/>
+<text x="168" y="120" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#7a2121">No</text>
+<text x="168" y="144" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="168" dy="0">[No] n = 11  P =</tspan>
+<tspan x="168" dy="24">1.8313940065972934e+41 |</tspan>
+<tspan x="168" dy="24">Verification (closed form): P =</tspan>
+<tspan x="168" dy="24">1.8313940065972934e+41</tspan>
+</text>
+<rect x="586" y="92" width="430" height="124" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="598" y="120" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="598" y="144" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="598" dy="0">[Yes] P = 3.86669416e-09</tspan>
+</text>
+<rect x="1016" y="92" width="430" height="124" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="1028" y="120" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="1028" y="144" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="1028" dy="0">[Yes] 3.866694163898936e-09</tspan>
+</text>
+<rect x="1446" y="92" width="400" height="124" fill="none" stroke="#c9c0ae"/>
+<text x="1458" y="122" font-family="Courier New, monospace" font-size="16" fill="#333">
+<tspan x="1458" dy="0">Claude uses n^k/(k·2^k);</tspan>
+<tspan x="1458" dy="24">Codex/MiniMax use n·k/(k·2^k).</tspan>
+</text>
+<rect x="36" y="216" width="1810" height="364" fill="#f8f3ea"/>
+<rect x="36" y="216" width="120" height="364" fill="none" stroke="#c9c0ae"/>
+<text x="48" y="246" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">Problem 2</text>
+<rect x="156" y="216" width="430" height="364" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="168" y="244" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="168" y="268" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="168" dy="0">[Yes] x               y |</tspan>
+<tspan x="168" dy="24">------------------------------</tspan>
+<tspan x="168" dy="24">|    -0.833333       -1.511788</tspan>
+<tspan x="168" dy="24">|    -0.047936      -40.722824</tspan>
+<tspan x="168" dy="24">|     0.737462        3.623797</tspan>
+<tspan x="168" dy="24">|     1.522859        1.969224</tspan>
+<tspan x="168" dy="24">|     2.308257        1.187120</tspan>
+</text>
+<rect x="586" y="216" width="430" height="364" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="598" y="244" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="598" y="268" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="598" dy="0">[Yes] x                    y |</tspan>
+<tspan x="598" dy="24">-0.833333            -1.511788</tspan>
+<tspan x="598" dy="24">|    -0.047936</tspan>
+<tspan x="598" dy="24">-40.722824 |     0.737462</tspan>
+<tspan x="598" dy="24">3.623797 |     1.522859</tspan>
+<tspan x="598" dy="24">1.969224 |     2.308257</tspan>
+<tspan x="598" dy="24">1.187120</tspan>
+</text>
+<rect x="1016" y="216" width="430" height="364" fill="#f8d7d7" stroke="#c9c0ae"/>
+<text x="1028" y="244" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#7a2121">No</text>
+<text x="1028" y="268" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="1028" dy="0">[No] -2.6179916666666667</tspan>
+<tspan x="1028" dy="24">-0.572957547587462 |</tspan>
+<tspan x="1028" dy="24">-1.8325941666666667</tspan>
+<tspan x="1028" dy="24">-0.5642677423555785 |</tspan>
+<tspan x="1028" dy="24">-1.0471966666666668</tspan>
+<tspan x="1028" dy="24">-1.0828673109612 |</tspan>
+<tspan x="1028" dy="24">-0.2617991666666668</tspan>
+<tspan x="1028" dy="24">-6.650827772542161 |</tspan>
+<tspan x="1028" dy="24">0.5235983333333332</tspan>
+<tspan x="1028" dy="24">4.774651594232074 |</tspan>
+<tspan x="1028" dy="24">1.3089958333333331</tspan>
+<tspan x="1028" dy="24">2.265802124495167 |</tspan>
+<tspan x="1028" dy="24">2.094393333333333</tspan>
+<tspan x="1028" dy="24">1.3684279083106077</tspan>
+</text>
+<rect x="1446" y="216" width="400" height="364" fill="none" stroke="#c9c0ae"/>
+<text x="1458" y="246" font-family="Courier New, monospace" font-size="16" fill="#333">
+<tspan x="1458" dy="0">MiniMax uses start = -5π/6;</tspan>
+<tspan x="1458" dy="24">Claude/Codex use start = -5/6.</tspan>
+</text>
+<rect x="36" y="580" width="1810" height="78" fill="#fffdf8"/>
+<rect x="36" y="580" width="120" height="78" fill="none" stroke="#c9c0ae"/>
+<text x="48" y="610" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">Problem 3</text>
+<rect x="156" y="580" width="430" height="78" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="168" y="608" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="168" y="632" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="168" dy="0">[Yes] m = 5  ||x|| = 13.341664</tspan>
+<tspan x="168" dy="24">| Verify: norm([3,4]) = 5.0</tspan>
+</text>
+<rect x="586" y="580" width="430" height="78" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="598" y="608" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="598" y="632" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="598" dy="0">[Yes] S = 25.000000 | ||x|| =</tspan>
+<tspan x="598" dy="24">5.000000</tspan>
+</text>
+<rect x="1016" y="580" width="430" height="78" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="1028" y="608" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="1028" y="632" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="1028" dy="0">[Yes] 178 13.341664064126334</tspan>
+</text>
+<rect x="1446" y="580" width="400" height="78" fill="none" stroke="#c9c0ae"/>
+<text x="1458" y="610" font-family="Courier New, monospace" font-size="16" fill="#333">
+<tspan x="1458" dy="0">All are valid, but sample vectors</tspan>
+<tspan x="1458" dy="24">differ.</tspan>
+</text>
+<rect x="36" y="658" width="1810" height="78" fill="#f8f3ea"/>
+<rect x="36" y="658" width="120" height="78" fill="none" stroke="#c9c0ae"/>
+<text x="48" y="688" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">Problem 4</text>
+<rect x="156" y="658" width="430" height="78" fill="#f6ebc8" stroke="#c9c0ae"/>
+<text x="168" y="686" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#6a5312">Unclear</text>
+<text x="168" y="710" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="168" dy="0">[Unclear] min = -6  at index 3</tspan>
+</text>
+<rect x="586" y="658" width="430" height="78" fill="#f6ebc8" stroke="#c9c0ae"/>
+<text x="598" y="686" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#6a5312">Unclear</text>
+<text x="598" y="710" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="598" dy="0">[Unclear] max = 8.000000</tspan>
+</text>
+<rect x="1016" y="658" width="430" height="78" fill="#f6ebc8" stroke="#c9c0ae"/>
+<text x="1028" y="686" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#6a5312">Unclear</text>
+<text x="1028" y="710" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="1028" dy="0">[Unclear] 8</tspan>
+</text>
+<rect x="1446" y="658" width="400" height="78" fill="none" stroke="#c9c0ae"/>
+<text x="1458" y="688" font-family="Courier New, monospace" font-size="16" fill="#333">
+<tspan x="1458" dy="0">Source scan is blurred; max vs min</tspan>
+<tspan x="1458" dy="24">remains unresolved.</tspan>
+</text>
+<rect x="36" y="736" width="1810" height="100" fill="#fffdf8"/>
+<rect x="36" y="736" width="120" height="100" fill="none" stroke="#c9c0ae"/>
+<text x="48" y="766" font-family="Courier New, monospace" font-size="18" font-weight="700" fill="#111">Problem 5</text>
+<rect x="156" y="736" width="430" height="100" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="168" y="764" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="168" y="788" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="168" dy="0">[Yes] Vector 1: min = -6 |</tspan>
+<tspan x="168" dy="24">Vector 2: min = 2 | Arithmetic</tspan>
+<tspan x="168" dy="24">mean of minimums = -2.0</tspan>
+</text>
+<rect x="586" y="736" width="430" height="100" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="598" y="764" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="598" y="788" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="598" dy="0">[Yes] mean = -2.000000</tspan>
+</text>
+<rect x="1016" y="736" width="430" height="100" fill="#dff3d8" stroke="#c9c0ae"/>
+<text x="1028" y="764" font-family="Courier New, monospace" font-size="17" font-weight="700" fill="#214f21">Yes</text>
+<text x="1028" y="788" font-family="Courier New, monospace" font-size="16" fill="#222">
+<tspan x="1028" dy="0">[Yes] -2.0</tspan>
+</text>
+<rect x="1446" y="736" width="400" height="100" fill="none" stroke="#c9c0ae"/>
+<text x="1458" y="766" font-family="Courier New, monospace" font-size="16" fill="#333">
+<tspan x="1458" dy="0">All agree on the exam sample</tspan>
+<tspan x="1458" dy="24">result: -2.</tspan>
+</text>
+</svg>
